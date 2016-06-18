@@ -1,0 +1,19 @@
+{
+    "name": "blacktrue/valida-cfdi",
+    "description": "Valida un XML cfdi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cesar aguilera",
+            "email": "cesargnu29@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.2"
+    },
+    "autoload":{
+        "psr-4":{
+            "Blacktrue\\" : "src"
+        }
+    }
+}
