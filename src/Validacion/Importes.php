@@ -107,7 +107,7 @@ class Importes
             $importe = floatval($element->getAttribute('importe'));
             $totalConceptos += $importe;
         }
-        if($totalConceptos!=$subTotal)
+        if(abs($totalConceptos-$subTotal) > $this->epsilon)
         {
             $this->valid = false;
             $this->errors[] = "El total de los conceptos no coincide con el subtotal de la factura {$totalConceptos} | {$subTotal}";
@@ -131,7 +131,7 @@ class Importes
         $retenidos = (float)$impuestos[0]->getAttribute('totalImpuestosRetenidos');
         $totalImpuestos = ($retenidos+$trasladados);
         $totalCalculado = ($subTotal-$descuento)+$totalImpuestos;
-        if($totalCalculado!==$total)
+        if(abs($totalCalculado-$total) > $this->epsilon)
         {
             $this->valid = false;
             $this->errors[] = "La suma del subtotal - descuentos + impuestos no coincide con el total de la factura {$totalCalculado} | {$total}";
