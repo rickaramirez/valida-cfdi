@@ -93,12 +93,20 @@ class Schema{
 
     public function validar()
     {
-        $xml = new DOMDocument();
-        $xml->loadXML($this->getXml());
-        if(!$xml->schemaValidate($this->getXsd()))
+        try
+        {
+            $xml = new DOMDocument();
+            $xml->loadXML($this->getXml());
+            if(!$xml->schemaValidate($this->getXsd()))
+            {
+                $this->valid = false;
+                $this->errors = libxml_get_errors();
+            }
+        }
+        catch(\ErrorException $ex)
         {
             $this->valid = false;
-            $this->errors = libxml_get_errors();
+            $this->errors[] = "Error al leer el XML, XML imposible de leer";
         }
         return $this;
     }
