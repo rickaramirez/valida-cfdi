@@ -130,8 +130,13 @@ class Importes
         $trasladados = (float)$impuestos[0]->getAttribute('totalImpuestosTrasladados');
         $retenidos = (float)$impuestos[0]->getAttribute('totalImpuestosRetenidos');
         $impuestos_locales = $xml->getElementsByTagNameNS('http://www.sat.gob.mx/implocal','ImpuestosLocales');
-        $local_traslado = (float)$impuestos_locales[0]->getAttribute('TotaldeTraslados');
-        $local_retenido = (float)$impuestos_locales[0]->getAttribute('TotaldeRetenciones');
+        $local_traslado = 0;
+        $local_retenido = 0;
+        if(isset($impuestos_locales[0]))
+        {
+            $local_traslado = (float)$impuestos_locales[0]->getAttribute('TotaldeTraslados');
+            $local_retenido = (float)$impuestos_locales[0]->getAttribute('TotaldeRetenciones');
+        }
         $totalImpuestos = ($retenidos+$trasladados);
         $totalLocales = ($local_traslado+$local_retenido);        
         $totalCalculado = ($subTotal-$descuento)+$totalImpuestos+$totalLocales;
