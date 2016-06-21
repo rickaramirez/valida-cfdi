@@ -66,6 +66,7 @@ class Importes
         {
             throw new InvalidArgumentException("EL valor de XML es invalido");
         }
+        $this->errors = [];
         $this->xml = $xml;
     }
 

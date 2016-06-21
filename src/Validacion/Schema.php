@@ -88,6 +88,7 @@ class Schema{
             throw new InvalidArgumentException("Valor XML Invalido");
         }
         $this->xml = $xml;
+        $this->errors = [];
         return $this;
     }
 
