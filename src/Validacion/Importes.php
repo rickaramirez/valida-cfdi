@@ -33,6 +33,13 @@ class Importes
      */
     protected $valid = true;
 
+
+    private function reset()
+    {
+    	$this->errors = [];
+    	$this->valid = true;
+    }
+
     /**
      * @return string
      */
@@ -66,7 +73,7 @@ class Importes
         {
             throw new InvalidArgumentException("EL valor de XML es invalido");
         }
-        $this->errors = [];
+        $this->reset();
         $this->xml = $xml;
     }
 

@@ -31,6 +31,12 @@ class Schema{
         libxml_use_internal_errors(true);
     }
 
+    private function reset()
+    {
+    	$this->errors = [];
+    	$this->valid = true;
+    }
+
     /**
      * @return mixed
      */
@@ -88,7 +94,7 @@ class Schema{
             throw new InvalidArgumentException("Valor XML Invalido");
         }
         $this->xml = $xml;
-        $this->errors = [];
+        $this->reset();
         return $this;
     }
 
